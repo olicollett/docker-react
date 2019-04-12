@@ -7,3 +7,17 @@ before_install:
 
 script:
   - docker run olicollett/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-868317468978"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_acce_key:
+    secure: "$AWS_SECRET_KEY"
+
